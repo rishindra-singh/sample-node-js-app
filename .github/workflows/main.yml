@@ -32,8 +32,8 @@ jobs:
       run: |
         pre_build_number=$((${BUILD_NUMBER}-1))
         echo $pre_build_number
-        word1="harbor.metabob.com/vikas/node-web-app:${pre_build_number}"
-        word2="harbor.metabob.com/vikas/node-web-app:${BUILD_NUMBER}"
+        word1="harbor.metabob.com/integration/node-web-app:${pre_build_number}"
+        word2="harbor.metabob.com/integration/node-web-app:${BUILD_NUMBER}"
         echo $word1
         echo $word2
         docker build -t $word2 .
