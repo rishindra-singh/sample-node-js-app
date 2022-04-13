@@ -1,12 +1,14 @@
 # This workflow will do a docker build image and push to our harbor registory.
-name: 'Building and Deploying Test Image'
+name: 'Building and Deploying'
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
+    tags:
+      - '*.*.*'
   pull_request:
-    branches: [ master ]
-    
+    branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
