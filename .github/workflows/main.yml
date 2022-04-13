@@ -13,7 +13,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
-	    name: Get Image Tag
+	name: Get Image Tag
         id: get-tag
         run: |
           type='${{ github.ref_type }}';
