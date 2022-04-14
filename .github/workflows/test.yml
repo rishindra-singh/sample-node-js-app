@@ -1,4 +1,4 @@
-name: 'Building and Deploying'
+name: 'Building and Deploying Test Image'
 
 on:
   push:
