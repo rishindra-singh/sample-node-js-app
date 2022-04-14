@@ -32,5 +32,5 @@ jobs:
           
       - name: Print image tag number
         run: |
-          image_tag = $today_date - $BUILD_NUMBER
+          image_tag = "($today_date) - ($BUILD_NUMBER)"
           echo "Image tag is $image_tag"
