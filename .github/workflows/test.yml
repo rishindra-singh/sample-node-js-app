@@ -3,11 +3,11 @@ name: 'Building and Deploying'
 
 on:
   push:
-    branches: [ integration ]
+    branches: [ main ]
     tags:
       - '*.*.*'
   pull_request:
-    branches: [ integration ]
+    branches: [ main ]
 
 jobs:
   build:
