@@ -24,13 +24,20 @@ jobs:
       - name: Print new build number
         run: |
           echo "Build number is $BUILD_NUMBER"
-
+          
+      - name: Get Image Tag
+        id: get-tag
+        run: |
+          type='${{ github.ref_type }}';
+          RELEASE_VERSION=${{ github.ref_name }};
+          if [[ $type = 'branch' ]] 
+          then
+              RELEASE_VERSION="$( date -I )-${BUILD_NUMBER}";
+          fi
+          echo "::set-output name=tag::$RELEASE_VERSION";
+        shell: bash
+        
       - name: Print today's date
         run: |
-          today_date="$( date -I )";
-          echo " Today's Date is $today_date"
-          
-      - name: Print image tag number
-        run: |
-          image_tag = "$( date -I )-${BUILD_NUMBER}"
-          echo "Image tag is $image_tag"
+          echo " Image tage : ${{ steps.get-tag.outputs.tag }}"
+        
