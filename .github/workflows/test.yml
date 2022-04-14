@@ -22,7 +22,7 @@ jobs:
         
       - name: Get Image Tag
         id: get-tag
-        run: RELEASE_VERSION="$( date -I )-${BUILD_NUMBER}";
+        run: RELEASE_VERSION="${ date -I }-${ BUILD_NUMBER }";
 
       - name: Print new release version
         run: echo "Release version is $RELEASE_VERSION"
