@@ -1,12 +1,12 @@
-name: 'Building and Deploying Test Image'
+name: 'Building and Deploying'
 
 on:
   push:
-    branches: [ integration ]
+    branches: [ main ]
     tags:
       - '*.*.*'
   pull_request:
-    branches: [ integration ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -33,4 +33,4 @@ jobs:
         shell: bash
 
       - name: Print new release version
-        run: echo "Release version are $RELEASE_VERSION"
+        run: echo "Release version is $RELEASE_VERSION"
