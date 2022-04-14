@@ -33,4 +33,4 @@ jobs:
         shell: bash
 
       - name: Print new release version
-        run: echo "Release version is $RELEASE_VERSION"
+        run: echo "Release version are $RELEASE_VERSION"
