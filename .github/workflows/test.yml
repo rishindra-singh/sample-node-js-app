@@ -22,15 +22,7 @@ jobs:
         
       - name: Get Image Tag
         id: get-tag
-        run: |
-          type='${{ github.ref_type }}';
-          RELEASE_VERSION=${{ github.ref_name }};
-          if [[ $type = 'branch' ]] 
-          then
-              RELEASE_VERSION="$( date -I )-${BUILD_NUMBER}";
-          fi
-          echo "::set-output name=tag::$RELEASE_VERSION";
-        shell: bash
+        run: RELEASE_VERSION="$( date -I )-${BUILD_NUMBER}";
 
       - name: Print new release version
         run: echo "Release version is $RELEASE_VERSION"
