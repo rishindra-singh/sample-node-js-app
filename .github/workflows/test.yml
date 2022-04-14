@@ -28,7 +28,7 @@ jobs:
           RELEASE_VERSION=${{ github.ref_name }};
           if [[ $type = 'branch' ]] 
           then
-              RELEASE_VERSION="$( date -I )- b${BUILD_NUMBER}";
+              RELEASE_VERSION="$( date -I )-${BUILD_NUMBER}";
           fi
           echo "::set-output name=tag::$RELEASE_VERSION";
         shell: bash
