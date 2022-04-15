@@ -1,5 +1,4 @@
-# This workflow will do a docker build image and push to our harbor registory.
-name: 'Building and Deploying Test image'
+name: 'Building and Deploying'
 
 on:
   push:
@@ -21,40 +20,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Generate build number
-        uses: einaregilsson/build-number@v3
-        with:
-          token: ${{secrets.github_token}} 
-
-      - name: Get Image Tag
-        id: get-tag
-        run: |
-          type='${{ github.ref_type }}';
-          RELEASE_VERSION=${{ github.ref_name }};
-          if [[ $type = 'branch' ]] 
-          then
-              RELEASE_VERSION="$( date -I )-${BUILD_NUMBER}";
-          fi
-          echo "::set-output name=tag::$RELEASE_VERSION";
-        shell: bash
-            
-      - name: Login to Harbor
-        uses: docker/login-action@v1
-        with:
-          registry: harbor.metabob.com
-          username: ${{ secrets.HARBOR_USERNAME }}
-          password: ${{ secrets.HARBOR_PASSWORD }}
-
-
-      - name: Docker image build
-        run: |
-          docker build -t local/${{env.APP_NAME}}          
-      
-      - name: Tag Docker Image and Push to Harbor
-        run: |
-          docker tag local/${APP_NAME} harbor.metabob.com/${{env.PROJECT_ID}}/${env.REPO_NAME}/${env.APP_NAME}:${{ steps.get-tag.outputs.tag }}
-          docker push harbor.metabob.com/${{env.PROJECT_ID}}/${env.REPO_NAME}/${env.APP_NAME}:${{ steps.get-tag.outputs.tag }}
-          docker rmi -f local/${APP_NAME}
-          docker rmi -f harbor.metabob.com/${{env.PROJECT_ID}}/${env.REPO_NAME}/${env.APP_NAME}:${{ steps.get-tag.outputs.tag }}
-          
+        
+	   - name: Using Environment variable
+       run: |
+         echo " Application name is : ${{env.APP_NAME}}	"	
