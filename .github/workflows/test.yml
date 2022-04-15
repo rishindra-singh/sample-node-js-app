@@ -13,6 +13,8 @@ env:
   ## Sets environment variable
   API_KEY: ABC1234
   APP_NAME: metabobapp
+  PROJECT_ID: integration
+  REPO_NAME: metabob-site
 
 jobs:
   build:
@@ -47,7 +49,14 @@ jobs:
           
       - name: Docker image build
         run: |
-          docker build -t local/${{env.APP_NAME}}      
+          docker build -t local/${{env.APP_NAME}}   
+          
+      - name: Tag Docker Image and Push to Harbor
+        run: |
+          docker tag local/${APP_NAME} harbor.metabob.com/${{env.PROJECT_ID}}/${env.REPO_NAME}/${env.APP_NAME}:${{ steps.get-tag.outputs.tag }}
+          docker push harbor.metabob.com/${{env.PROJECT_ID}}/${env.REPO_NAME}/${env.APP_NAME}:${{ steps.get-tag.outputs.tag }}
+          docker rmi -f local/${APP_NAME}
+          docker rmi -f harbor.metabob.com/${{env.PROJECT_ID}}/${env.REPO_NAME}/${env.APP_NAME}:${{ steps.get-tag.outputs.tag }}    
         
       - name: step 1
         run: echo "The API key is:${{env.API_KEY}}"  	
