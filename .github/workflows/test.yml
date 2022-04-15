@@ -1,4 +1,4 @@
-name: 'Building and Deploying'
+name: 'Building and Pushing Image to Harbor'
 
 on:
   push:
@@ -10,8 +10,6 @@ on:
     
     
 env:
-  ## Sets environment variable
-  API_KEY: ABC1234
   APP_NAME: metabobapp
   PROJECT_ID: integration
   REPO_NAME: metabob-site
@@ -57,6 +55,12 @@ jobs:
           docker push harbor.metabob.com/${{env.PROJECT_ID}}/${{env.REPO_NAME}}/${{env.APP_NAME}}:${{ steps.get-tag.outputs.tag }}
           docker rmi -f ${{env.APP_NAME}}
           docker rmi -f harbor.metabob.com/${{env.PROJECT_ID}}/${{env.REPO_NAME}}/${{env.APP_NAME}}:${{ steps.get-tag.outputs.tag }}    
+          
+      - name: Installing helm
+        run: |
+          clear
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+          helm  repo list
         
-      - name: step 1
-        run: echo "The API key is:${{env.API_KEY}}"  	
