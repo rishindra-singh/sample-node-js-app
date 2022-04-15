@@ -62,5 +62,6 @@ jobs:
           chmod 700 get_helm.sh
           ./get_helm.sh
           helm repo add charts https://harbor.metabob.com/chartrepo/nodeapp-helm-charts
+          helm repo update
           helm  repo list
         
