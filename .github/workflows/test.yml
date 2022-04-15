@@ -51,8 +51,7 @@ jobs:
           
       - name: Tag Docker Image and Push to Harbor
         run: |
-          docker tag ${{env.APP_NAME}} harbor.metabob.com/${{env.PROJECT_ID}}/${{env.REPO_NAME}}:${{ steps.get-tag.outputs.tag }}
-          docker push harbor.metabob.com/${{env.PROJECT_ID}}/${{env.REPO_NAME}}:${{ steps.get-tag.outputs.tag }}
-          docker rmi -f ${{env.APP_NAME}}
-          docker rmi -f harbor.metabob.com/${{env.PROJECT_ID}}/${{env.REPO_NAME}}:${{ steps.get-tag.outputs.tag }}    
+          docker pull harbor.metabob.com/${{env.PROJECT_ID}}/${{env.REPO_NAME}}:2022-04-15-13
+          ls -a
+             
         
