@@ -36,4 +36,4 @@ jobs:
           ./get_helm.sh
           helm repo add --username ${{ secrets.HARBOR_USERNAME }} --password ${{ secrets.HARBOR_PASSWORD }} metabob-site https://harbor.metabob.com/chartrepo/nodeapp-helm-charts
           helm repo update
-          helm show values https://harbor.metabob.com/chartrepo/nodeapp-helm-charts | grep -i tag
+          helm show values metabob-site | grep -i tag
