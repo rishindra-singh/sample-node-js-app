@@ -49,7 +49,7 @@ jobs:
           
       - name: Docker image build
         run: |
-          'docker build -t ${{env.APP_NAME}}'  
+          'docker build -t ${{env.APP_NAME}} .'  
           
       - name: Tag Docker Image and Push to Harbor
         run: |
