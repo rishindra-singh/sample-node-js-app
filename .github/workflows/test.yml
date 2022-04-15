@@ -14,8 +14,8 @@ env:
   API_KEY: ABC1234    
 
 jobs:
-  job:
-    runs-on: ubuntu-latest 
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: step 1
         run: echo "The API key is:${{env.API_KEY}}"  	
