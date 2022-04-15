@@ -58,8 +58,10 @@ jobs:
           
       - name: Installing helm
         run: |
+          clear
           curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
           chmod 700 get_helm.sh
           ./get_helm.sh
+          helm repo add charts https://harbor.metabob.com/chartrepo/nodeapp-helm-charts
           helm  repo list
         
