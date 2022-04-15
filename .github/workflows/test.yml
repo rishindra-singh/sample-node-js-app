@@ -51,11 +51,10 @@ jobs:
         run: |
           docker build -t local/${{env.APP_NAME}}          
       
-      # And make it available for the builds
       - name: Tag Docker Image and Push to Harbor
         run: |
-          docker tag local/${APP_NAME} harbor.metabob.com/${{env.PROJECT_ID}}/${REPO_NAME}/${APP_NAME}:${{ steps.get-tag.outputs.tag }}
-          docker push harbor.metabob.com/${{env.PROJECT_ID}}/${REPO_NAME}/${APP_NAME}:${{ steps.get-tag.outputs.tag }}
+          docker tag local/${APP_NAME} harbor.metabob.com/${{env.PROJECT_ID}}/${env.REPO_NAME}/${env.APP_NAME}:${{ steps.get-tag.outputs.tag }}
+          docker push harbor.metabob.com/${{env.PROJECT_ID}}/${env.REPO_NAME}/${env.APP_NAME}:${{ steps.get-tag.outputs.tag }}
           docker rmi -f local/${APP_NAME}
-          docker rmi -f harbor.metabob.com/${{env.PROJECT_ID}}/${REPO_NAME}/${APP_NAME}:${{ steps.get-tag.outputs.tag }}
+          docker rmi -f harbor.metabob.com/${{env.PROJECT_ID}}/${env.REPO_NAME}/${env.APP_NAME}:${{ steps.get-tag.outputs.tag }}
           
