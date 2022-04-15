@@ -11,7 +11,8 @@ on:
     
 env:
   ## Sets environment variable
-  API_KEY: ABC1234    
+  API_KEY: ABC1234
+  APP_NAME: metabobapp
 
 jobs:
   build:
@@ -43,6 +44,10 @@ jobs:
           registry: harbor.metabob.com
           username: ${{ secrets.HARBOR_USERNAME }}
           password: ${{ secrets.HARBOR_PASSWORD }}  
+          
+      - name: Docker image build
+        run: |
+          docker build -t local/${{env.APP_NAME}}      
         
       - name: step 1
         run: echo "The API key is:${{env.API_KEY}}"  	
