@@ -9,18 +9,13 @@ on:
     branches: [ main ]
     
     
-  env:
-    APP_NAME: metabobapp
-    PROJECT_ID: integration
-    REPO_NAME: metabob-site
+env:
+  ## Sets environment variable
+  API_KEY: ABC1234    
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  job:
+    runs-on: ubuntu-latest 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        
-	   - name: Using Environment variable
-       run: |
-         echo " Application name is : ${{env.APP_NAME}}	"	
+      - name: step 1
+        run: echo "The API key is:${{env.API_KEY}}"  	
